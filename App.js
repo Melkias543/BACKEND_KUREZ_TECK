@@ -1,16 +1,18 @@
 const express = require("express");
 const mysql = require("mysql2");
 const cors = require("cors");
+const doten = require("dotenv")
+const dotenv = doten.config()
 const app = express();
 app.use(express.json());
 app.use(cors());
 
 const db = mysql.createConnection({
-  database: "tasklist",
-  host: "localhost",
-  user: "milk@apo",
-  password: "12345678",
-  connectionLimit: 10,
+  database: process.env.database,
+  host: process.env.host,
+  user: process.env.user,
+  password: process.env.password,
+  connectionLimit: process.env.connectionLimit,
 });
 
 db.connect((err, res) => {
